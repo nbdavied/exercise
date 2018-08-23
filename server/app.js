@@ -16,6 +16,42 @@ var USERS = [
     { 'id': 2, 'username': 'paul' },
     { 'id': 3, 'username': 'sebastian' },
 ];
+var Questions = [
+    {
+        'id':1,'question':'test 1','choices':[
+            {'id':0,text:'choice test 1'},
+            { 'id': 1, text: 'choice test 2' },
+            { 'id': 2, text: 'choice test 3' },
+            { 'id': 3, text: 'choice test 4' }
+        ],'type':'s'
+    },
+    {
+        'id': 2, 'question': 'test 2', 'choices': [
+            { 'id': 0, text: 'choice test 1' },
+            { 'id': 1, text: 'choice test 2' },
+            { 'id': 2, text: 'choice test 3' },
+            { 'id': 3, text: 'choice test 4' }
+        ], 'type': 'm'
+    },
+    {
+        'id': 3, 'question': '单选 3', 'choices': [
+            { 'id': 0, text: 'choice test 1' },
+            { 'id': 1, text: 'choice test 2' }
+        ], 'type': 't'
+    },
+    {
+        'id': 4, 'question': 'test 4', 'choices': [
+            { 'id': 0, text: 'choice test 1' },
+            { 'id': 1, text: 'choice test 2' },
+            { 'id': 2, text: 'choice test 3' },
+            { 'id': 3, text: 'choice test 4' }
+        ], 'type': 's'
+    }
+]
+var index = 0;
+function getQuestion(){
+    return Questions[index++ %4];
+}
 function getTodos(userID) {
     var todos = _.filter(TODOS, ['user_id', userID]);
 
@@ -30,6 +66,9 @@ function getUsers() {
     return USERS;
 }
 app.use(bodyParser.json());
+app.get('/api/question', function(req, res){
+    res.send(getQuestion());
+})
 app.post('/api/auth', function (req, res) {
     const body = req.body;
 

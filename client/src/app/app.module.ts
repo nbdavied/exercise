@@ -7,6 +7,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShowQuesComponent } from './component/show-ques/show-ques.component';
+import { QuestionService } from './service/question.service';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -30,7 +31,9 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [],
+  providers: [
+    QuestionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
