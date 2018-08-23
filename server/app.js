@@ -48,6 +48,11 @@ var Questions = [
         ], 'type': 's'
     }
 ]
+var Bank = [
+    { 'id': 1, name:'题库1' },
+    { 'id': 2, name:'题库2' },
+    { 'id': 3, name:'题库3' },
+]
 var index = 0;
 function getQuestion(){
     return Questions[index++ %4];
@@ -66,8 +71,14 @@ function getUsers() {
     return USERS;
 }
 app.use(bodyParser.json());
-app.get('/api/question', function(req, res){
+app.get('/api/question/:bankid', function(req, res){
     res.send(getQuestion());
+})
+app.post('/api/answer/:quesId',function(req, res){
+    res.send([1,2]);
+})
+app.get('/api/banks',function(req, res){
+    res.send(Bank);
 })
 app.post('/api/auth', function (req, res) {
     const body = req.body;

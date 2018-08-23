@@ -1,22 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Question } from '../entity/question';
 import { HttpClient } from '@angular/common/http';
+import { Bank } from '../entity/bank';
 
 @Injectable({
   providedIn: 'root'
 })
-export class QuestionService {
+export class BankService {
+
   constructor(private http: HttpClient) { }
-  getQuestion(bankid:number, method: string):Observable<Question>{
-    return this.http.get<Question>(`/api/question/${bankid}?method=${method}`).pipe(
-      catchError(this.handleError<Question>('getQuestion'))
-    );
-  }
-  getAnswer(questionId:number, answer:number[]):Observable<number[]>{
-    return this.http.post<number[]>(`/api/answer/${questionId}`, answer).pipe(
-      catchError(this.handleError<number[]>('getAnswer',[]))
+  getBanks():Observable<Bank[]>{
+    return this.http.get<Bank[]>('api/banks').pipe(
+      catchError(this.handleError<Bank[]>('get banks',[]))
     );
   }
   private handleError<T>(operation = 'operation', result?: T) {
@@ -32,7 +28,7 @@ export class QuestionService {
       return of(result as T);
     };
   }
-  private log(msg: string):void{
+  private log(msg: string): void {
 
   }
 }

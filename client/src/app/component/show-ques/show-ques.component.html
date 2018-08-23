@@ -1,3 +1,21 @@
-<p>
-  show-ques works!
-</p>
+<input type="radio" name="nextType" value="random" [(ngModel)]="nextType">随机出题
+<input type="radio" name="nextType" value="queue" [(ngModel)]="nextType">顺序出题
+<div>
+  <span>题目</span>
+  <span>{{question.question}}</span>
+</div>
+<div *ngIf="question.type==='s'">单选题</div>
+<div *ngIf="question.type==='m'">多选题</div>
+<div *ngIf="question.type==='t'">判断题</div>
+<div>
+  <p>选项</p>
+  <div *ngFor="let choice of question.choices"
+     [class.selected]="selected.includes(choice.id)"
+     [class.right-choice]="answer.includes(choice.id)"
+     (click)="select(choice.id)"
+     class="choice">
+    <p >{{choice.text}}</p>
+  </div>
+</div>
+<button (click)="getAnswer()" class="btn btn-primary">显示答案</button>
+<button (click)="getQuestion()" class="btn btn-default">下一题</button> 

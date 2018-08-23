@@ -1,0 +1,9 @@
+.right-choice{
+    color: green;
+}
+.selected{
+    border: 2px solid green;
+}
+.choice{
+    cursor: pointer;
+}
