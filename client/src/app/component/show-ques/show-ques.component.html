@@ -17,5 +17,6 @@
     <p >{{choice.text}}</p>
   </div>
 </div>
+<a routerLink="/edit" *ngIf="answer.length > 0">修改答案</a>
 <button (click)="getAnswer()" class="btn btn-primary">显示答案</button>
 <button (click)="getQuestion()" class="btn btn-default">下一题</button> 

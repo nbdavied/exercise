@@ -23,7 +23,7 @@ var Questions = [
             { 'id': 1, text: 'choice test 2' },
             { 'id': 2, text: 'choice test 3' },
             { 'id': 3, text: 'choice test 4' }
-        ],'type':'s'
+        ],'type':'s','editFlag':'0'
     },
     {
         'id': 2, 'question': 'test 2', 'choices': [
@@ -31,13 +31,13 @@ var Questions = [
             { 'id': 1, text: 'choice test 2' },
             { 'id': 2, text: 'choice test 3' },
             { 'id': 3, text: 'choice test 4' }
-        ], 'type': 'm'
+        ], 'type': 'm', 'editFlag': '0'
     },
     {
         'id': 3, 'question': '单选 3', 'choices': [
             { 'id': 0, text: 'choice test 1' },
             { 'id': 1, text: 'choice test 2' }
-        ], 'type': 't'
+        ], 'type': 't', 'editFlag': '0'
     },
     {
         'id': 4, 'question': 'test 4', 'choices': [
@@ -45,7 +45,39 @@ var Questions = [
             { 'id': 1, text: 'choice test 2' },
             { 'id': 2, text: 'choice test 3' },
             { 'id': 3, text: 'choice test 4' }
-        ], 'type': 's'
+        ], 'type': 's', 'editFlag': '0'
+    }
+]
+var QuesWithAnsw = [
+    {
+        'id': 1, 'question': 'test 1', 'choices': [
+            { 'id': 0, text: 'choice test 1' },
+            { 'id': 1, text: 'choice test 2' },
+            { 'id': 2, text: 'choice test 3' },
+            { 'id': 3, text: 'choice test 4' }
+        ], 'type': 's', 'editFlag': '0',right:[0],wrong:[1,2,3]
+    },
+    {
+        'id': 2, 'question': 'test 2', 'choices': [
+            { 'id': 0, text: 'choice test 1' },
+            { 'id': 1, text: 'choice test 2' },
+            { 'id': 2, text: 'choice test 3' },
+            { 'id': 3, text: 'choice test 4' }
+        ], 'type': 'm', 'editFlag': '0', right: [0,1], wrong: [2, 3]
+    },
+    {
+        'id': 3, 'question': '单选 3', 'choices': [
+            { 'id': 0, text: 'choice test 1' },
+            { 'id': 1, text: 'choice test 2' }
+        ], 'type': 't', 'editFlag': '0', right: [0], wrong: [1]
+    },
+    {
+        'id': 4, 'question': 'test 4', 'choices': [
+            { 'id': 0, text: 'choice test 1' },
+            { 'id': 1, text: 'choice test 2' },
+            { 'id': 2, text: 'choice test 3' },
+            { 'id': 3, text: 'choice test 4' }
+        ], 'type': 's', 'editFlag': '0', right: [1], wrong: [0, 2, 3]
     }
 ]
 var Bank = [
@@ -80,7 +112,7 @@ app.post('/api/answer/:quesId',function(req, res){
 app.get('/api/banks',function(req, res){
     res.send(Bank);
 })
-app.post('/api/auth', function (req, res) {
+app.post('/api/user/auth', function (req, res) {
     const body = req.body;
 
     const user = USERS.find(user => user.username == body.username);

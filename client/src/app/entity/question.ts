@@ -5,4 +5,5 @@ export class Question{
     question: string;
     choices: Choice[];
     type: string;
+    editFlag: string;
 }

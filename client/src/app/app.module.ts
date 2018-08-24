@@ -9,8 +9,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShowQuesComponent } from './component/show-ques/show-ques.component';
 import { QuestionService } from './service/question.service';
+import { UserService } from './service/user.service';
 import { SelectBankComponent } from './component/select-bank/select-bank.component';
 import { EditQuesComponent } from './component/edit-ques/edit-ques.component';
+import { LoginComponent } from './component/login/login.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -21,7 +23,8 @@ export function tokenGetter() {
     AppComponent,
     ShowQuesComponent,
     SelectBankComponent,
-    EditQuesComponent
+    EditQuesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ export function tokenGetter() {
     })
   ],
   providers: [
-    QuestionService
+    QuestionService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
