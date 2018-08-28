@@ -11,10 +11,11 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<string>{
-    return this.http.post<string>('/api/user/auth', {username: username, password: password}).pipe(
-      tap(result => {
-        localStorage.setItem('access_token', result);
+  login(username: string, password: string): Observable<boolean>{
+    return this.http.post<{ token: string }>('/api/login', {username: username, password: password}).pipe(
+      map(result => {
+        localStorage.setItem('access_token', result.token);
+        return true;
       })
     );
   }

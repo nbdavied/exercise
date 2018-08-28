@@ -21,7 +21,12 @@ export class LoginComponent implements OnInit {
       .subscribe(
         result => {
           let url = sessionStorage.getItem('redirectUrl');
-          this.router.navigate([url]);
+          if(url){
+            this.router.navigate([url]);
+          }else{
+            this.router.navigate(["/"]);
+          }
+          
         },
         err => this.error = '登陆失败'
       );
