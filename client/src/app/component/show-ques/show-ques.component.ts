@@ -18,7 +18,7 @@ export class ShowQuesComponent implements OnInit {
   onlyWrong: boolean;
   constructor(private questionService:QuestionService,
     private route: ActivatedRoute,
-    private userService: UserService) { }
+    public userService: UserService) { }
 
   ngOnInit() {
     this.currentId = 0;
@@ -28,7 +28,7 @@ export class ShowQuesComponent implements OnInit {
     this.onlyWrong = false;
     this.getQuestion();
   }
-  private getQuestion(){
+  public getQuestion(){
     const bankid = +this.route.snapshot.paramMap.get('bankid');
     if(this.nextType == 'random'){
       this.questionService.randomQuestion(bankid, this.onlyWrong)
@@ -48,7 +48,7 @@ export class ShowQuesComponent implements OnInit {
     this.selected = [];
     this.answer = [];
   }
-  private getAnswer() {
+  public getAnswer() {
     this.questionService.getAnswer(this.question.id, this.selected).subscribe(answer => this.answer = answer);
   }
   private select(choiceid: number){

@@ -8,10 +8,10 @@ import { UserService } from '../../service/user.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  private user: User;
-  private checkpass: string;
-  private message: string;
-  constructor(private userService: UserService) { }
+  public user: User;
+  public checkpass: string;
+  public message: string;
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
     this.user = new User;

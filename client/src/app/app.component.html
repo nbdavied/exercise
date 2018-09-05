@@ -1,13 +1,12 @@
 <div class='login-bar'>
-  <app-login-bar></app-login-bar>
+    <app-login-bar></app-login-bar>
 </div>
 <div class="container-fluid">
-  <h1>{{title}}</h1>
-  <div *ngIf="userService.loggedIn">
-    {{userService.username.sub}}
+  
+  <div class="row">
+    <div class="col-md-12 col-lg-6 offset-lg-3">
+      <h1>{{title}}</h1>
+      <router-outlet></router-outlet>
+    </div>
   </div>
-  <nav class="nav nav-pills">
-    <a class="nav-link" routerLink="banks" routerLinkActive="active">题库选择</a>
-  </nav>
-  <router-outlet></router-outlet>
 </div>

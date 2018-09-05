@@ -3,11 +3,17 @@
     color: white;
     height: 40px;
     font-size: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
 }
-.nav-bar{
-    flex-direction: row;
+ul{
     display: flex;
     list-style: none;
+    float: right;
+}
+li{
+    margin-right: 10px;
 }
 /* .bar-content{
     margin-top: 5px;
@@ -20,4 +26,7 @@ a {
 a:focus{
     color: #dddddd;
     text-decoration-line: none;
+}
+.menu{
+
 }

@@ -38,8 +38,7 @@ export class UserService {
       return false;
     }
   }
-  public get username():string{
-    console.log(this.jwtHelper.decodeToken());
-    return this.jwtHelper.decodeToken()
+  public get nickname():string{
+    return this.jwtHelper.decodeToken().nic;
   }
 }
