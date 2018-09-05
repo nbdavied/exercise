@@ -13,6 +13,8 @@ import { UserService } from './service/user.service';
 import { SelectBankComponent } from './component/select-bank/select-bank.component';
 import { EditQuesComponent } from './component/edit-ques/edit-ques.component';
 import { LoginComponent } from './component/login/login.component';
+import { LoginBarComponent } from './component/login-bar/login-bar.component';
+import { SignupComponent } from './component/signup/signup.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -24,7 +26,9 @@ export function tokenGetter() {
     ShowQuesComponent,
     SelectBankComponent,
     EditQuesComponent,
-    LoginComponent
+    LoginComponent,
+    LoginBarComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

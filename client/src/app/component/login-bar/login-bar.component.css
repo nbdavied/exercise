@@ -1,0 +1,23 @@
+.bar-box{
+    background-color: #007ACC;
+    color: white;
+    height: 40px;
+    font-size: 20px;
+}
+.nav-bar{
+    flex-direction: row;
+    display: flex;
+    list-style: none;
+}
+/* .bar-content{
+    margin-top: 5px;
+    float: right;
+    padding-right: 10px;
+} */
+a {
+    color: white;
+}
+a:focus{
+    color: #dddddd;
+    text-decoration-line: none;
+}

@@ -9,13 +9,27 @@ import { HttpClient } from '@angular/common/http';
 })
 export class QuestionService {
   constructor(private http: HttpClient) { }
-  getQuestion(bankid:number, method: string):Observable<Question>{
-    return this.http.get<Question>(`/api/question/${bankid}?method=${method}`).pipe(
-      catchError(this.handleError<Question>('getQuestion'))
+
+  nextQuestion(bankid:number, last:number, onlyWrong:boolean):Observable<Question>{
+    var wrong = '0';
+    if(onlyWrong){
+      wrong = '1';
+    }
+    return this.http.get<Question>(`/api/question/next?bankId=${bankid}&last=${last}&wrong=${wrong}`).pipe(
+      catchError(this.handleError<Question>('nextQuestion'))
+    );
+  }
+  randomQuestion(bankid:number, onlyWrong:boolean):Observable<Question>{
+    var wrong = '0';
+    if (onlyWrong) {
+      wrong = '1';
+    }
+    return this.http.get<Question>(`/api/question/random?bankId=${bankid}&wrong=${wrong}`).pipe(
+      catchError(this.handleError<Question>('nextQuestion'))
     );
   }
   getAnswer(questionId:number, answer:number[]):Observable<number[]>{
-    return this.http.post<number[]>(`/api/answer/${questionId}`, answer).pipe(
+    return this.http.post<number[]>(`/api/question/answer/${questionId}`, answer).pipe(
       catchError(this.handleError<number[]>('getAnswer',[]))
     );
   }

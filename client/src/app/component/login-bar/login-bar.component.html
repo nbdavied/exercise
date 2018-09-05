@@ -1,0 +1,11 @@
+<div class="bar-box">
+  <div class="row">
+    <ul *ngIf="!userService.loggedIn" class="nav-bar col-md-12 col-lg-3 col-lg-offset-9">
+      <li class="nav-item"><a class="nav-link" routerLink="login">登陆</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="signup">注册</a></li>
+    </ul>
+    <div *ngIf="userService.loggedIn">
+
+    </div>
+  </div>
+</div>
