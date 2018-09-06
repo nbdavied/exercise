@@ -1,7 +1,8 @@
 <div>
-  <ul>
-    <li *ngFor="let bank of banks">
-      <a routerLink="/question/{{bank.id}}">{{bank.name}}</a>
-    </li>
-  </ul>
+  <div class="list-group">
+    <a *ngFor="let bank of banks" class="list-group-item list-group-item-action"
+      routerLink="/question/{{bank.id}}">
+      {{bank.name}}
+    </a>
+  </div>
 </div>

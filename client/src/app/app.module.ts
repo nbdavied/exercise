@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShowQuesComponent } from './component/show-ques/show-ques.component';
@@ -15,6 +14,8 @@ import { EditQuesComponent } from './component/edit-ques/edit-ques.component';
 import { LoginComponent } from './component/login/login.component';
 import { LoginBarComponent } from './component/login-bar/login-bar.component';
 import { SignupComponent } from './component/signup/signup.component';
+import { CustomMaterialModule } from './module/custom-material/custom-material.module';
+import { NavbarComponent } from './component/navbar/navbar.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -28,7 +29,8 @@ export function tokenGetter() {
     EditQuesComponent,
     LoginComponent,
     LoginBarComponent,
-    SignupComponent
+    SignupComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,7 @@ export function tokenGetter() {
     HttpClientModule,
     FormsModule,
     NgbModule,
+    CustomMaterialModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

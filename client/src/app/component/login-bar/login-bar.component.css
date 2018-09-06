@@ -10,7 +10,6 @@
 ul{
     display: flex;
     list-style: none;
-    float: right;
 }
 li{
     margin-right: 10px;
@@ -27,6 +26,6 @@ a:focus{
     color: #dddddd;
     text-decoration-line: none;
 }
-.menu{
-
+.user-area{
+    float: right;
 }

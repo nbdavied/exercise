@@ -1,9 +1,22 @@
-.right-choice{
-    color: green;
+.list-group-item.active{
+    background-color: #007ACC;
 }
+
 .selected{
     border: 2px solid green;
 }
 .choice{
     cursor: pointer;
+}
+.done-icon{
+    font-size: 16px;
+}
+button{
+    margin: 10px auto;
+}
+.typeLabel{
+    margin:10px 10px 10px 0;
+}
+mat-radio-button{
+    margin:10px;
 }

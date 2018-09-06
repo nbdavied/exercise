@@ -16,6 +16,10 @@ export class ShowQuesComponent implements OnInit {
   answer:number[];
   currentId:number;
   onlyWrong: boolean;
+  svgStyle: object = {
+    'fill': 'white',
+    'width.px': 16
+  };
   constructor(private questionService:QuestionService,
     private route: ActivatedRoute,
     public userService: UserService) { }

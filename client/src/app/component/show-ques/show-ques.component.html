@@ -1,31 +1,45 @@
-<input type="radio" name="nextType" value="random" [(ngModel)]="nextType">随机出题
-<input type="radio" name="nextType" value="queue" [(ngModel)]="nextType">顺序出题
-<div *ngIf="question">
-  <div>
-    <span>题目</span>
-    <span>{{question.question}}</span>
-  </div>
-  
-  <div *ngIf="question.type==='s'">单选题</div>
-  <div *ngIf="question.type==='m'">多选题</div>
-  <div *ngIf="question.type==='t'">判断题</div>
-  <div>
-    <p>选项</p>
-    <div *ngFor="let choice of question.choices"
-       [class.selected]="selected.includes(choice.id)"
-       [class.right-choice]="answer.includes(choice.id)"
-       (click)="select(choice.id)"
-       class="choice">
-      <p >{{choice.text}}</p>
+<mat-card *ngIf="question">
+    <mat-card-header>
+      <mat-card-title>{{question.question}}</mat-card-title>
+      <mat-card-subtitle>
+        <span *ngIf="question.type==='s'">单选题</span>
+        <span *ngIf="question.type==='m'">多选题</span>
+        <span *ngIf="question.type==='t'">判断题</span>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    
+    <div>
+      <ul class="list-group">
+        <li *ngFor="let choice of question.choices" [class.active]="selected.includes(choice.id)" (click)="select(choice.id)" class="list-group-item choice">
+          <i class="material-icons done-icon" *ngIf="answer.includes(choice.id)">done</i>
+          {{choice.text}}
+        </li>
+      </ul>
     </div>
-  </div>
-</div>
+
+</mat-card>
+
 <div *ngIf="!question">没有更多题目了</div>
 <div>
   <label for="questionId">当前题号</label>
   <input id="questionId" [(ngModel)]="currentId">
 </div>
-<div><a routerLink="/edit" *ngIf="answer.length > 0">修改答案</a></div>
-<div *ngIf="userService.loggedIn"><input type="checkbox" [checked]="onlyWrong" (change)="onlyWrong = !onlyWrong">只看错题</div>
-<button (click)="getAnswer()" class="btn btn-primary">显示答案</button>
-<button (click)="getQuestion()" class="btn btn-default">下一题</button> 
+<!-- <div><a routerLink="/edit" *ngIf="answer.length > 0">修改答案</a></div> -->
+<div class="row">
+  <div class="col-12 col-md-8">
+    <mat-radio-group [(ngModel)]="nextType">
+      <label class="typeLabel">出题方式</label>
+      <mat-radio-button value="random" color="primary">随机出题</mat-radio-button>
+      <mat-radio-button value="queue" color="primary">顺序出题</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div class="col-12 col-md-4" *ngIf="userService.loggedIn">
+      <mat-slide-toggle [checked]="onlyWrong" (change)="onlyWrong = !onlyWrong">
+        只看错题
+      </mat-slide-toggle>
+  </div>
+</div>
+
+<button (click)="getAnswer()" mat-raised-button color="primary" class="btn-block">显示答案</button>
+<button (click)="getQuestion()" mat-raised-button  class="btn-block">下一题</button> 
