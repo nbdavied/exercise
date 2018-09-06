@@ -11,7 +11,7 @@
 .done-icon{
     font-size: 16px;
 }
-button{
+button.btn-block.action-btn.mat-raised-button{
     margin: 10px auto;
 }
 .typeLabel{
@@ -19,4 +19,7 @@ button{
 }
 mat-radio-button{
     margin:10px;
+}
+.actions{
+    padding: 15px 20px;
 }

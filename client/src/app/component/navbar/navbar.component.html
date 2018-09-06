@@ -1,3 +1,16 @@
 <nav class="docs-navbar-header">
-  
+  <span mat-button>TEST YOURSELF</span>
+  <a mat-button routerLink="banks" class="docs-navbar-hide-small">选择题库</a>
+  <div class="flex-spacer"></div>
+  <div *ngIf="!userService.loggedIn" class="user-area">
+    <a mat-button routerLink="login">登陆</a>
+    <a mat-button routerLink="signup">注册</a>
+  </div>
+  <div *ngIf="userService.loggedIn" class="user-area">
+    <span mat-button>欢迎：{{userService.nickname}}</span>
+    <button mat-button (click)="userService.logout()">退出</button>
+  </div>
+</nav>
+<nav class="docs-navbar-show-small">
+    <a mat-button routerLink="banks">选择题库</a>
 </nav>
