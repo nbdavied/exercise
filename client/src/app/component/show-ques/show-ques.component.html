@@ -35,7 +35,6 @@
         <div class="row">
           <div class="col-12 col-md-8">
             <mat-radio-group [(ngModel)]="nextType">
-              <label class="typeLabel">出题方式</label>
               <mat-radio-button value="random" color="primary">随机出题</mat-radio-button>
               <mat-radio-button value="queue" color="primary">顺序出题</mat-radio-button>
             </mat-radio-group>
@@ -46,9 +45,11 @@
               </mat-slide-toggle>
           </div>
         </div>
-    
-        <button (click)="getAnswer()" mat-raised-button color="primary" class="btn-block action-btn">显示答案</button>
-        <button (click)="getQuestion()" mat-raised-button  class="btn-block action-btn">下一题</button>
+        <div class="btn-box">
+          <button (click)="getAnswer()" mat-raised-button color="primary" class="btn-block action-btn">显示答案</button>
+          <button (click)="getQuestion()" mat-raised-button  class="btn-block action-btn">下一题</button>
+        </div>
+        
     </div>
          
   </mat-card-actions>
