@@ -1,59 +1,26 @@
-<mat-card>
-  <div *ngIf="question">
-    <mat-card-header>
-      <mat-card-title>{{question.question}}</mat-card-title>
-      <mat-card-subtitle>
-        <span *ngIf="question.type==='s'">单选题</span>
-        <span *ngIf="question.type==='m'">多选题</span>
-        <span *ngIf="question.type==='t'">判断题</span>
-      </mat-card-subtitle>
-    </mat-card-header>
+<div *ngIf="question">
+  <mat-card-header>
+    <mat-card-title>{{question.question}}</mat-card-title>
+    <mat-card-subtitle>
+      <span *ngIf="question.type==='s'">单选题</span>
+      <span *ngIf="question.type==='m'">多选题</span>
+      <span *ngIf="question.type==='t'">判断题</span>
+    </mat-card-subtitle>
+  </mat-card-header>
 
-    <mat-card-content>
-      <div>
-        <ul class="list-group">
-          <li *ngFor="let choice of question.choices" [class.active]="selected.includes(choice.id)" (click)="select(choice.id)" class="list-group-item choice">
-            <i class="material-icons done-icon" *ngIf="answer.includes(choice.id)">done</i>
-            {{choice.text}}
-          </li>
-        </ul>
-      </div>  
-    </mat-card-content>
-  </div>
-  <div *ngIf="!question">
-    <mat-card-header>
-      没有更多题目了
-    </mat-card-header>
-  </div>
-  <mat-card-actions>
-    <div class="actions">
-        <div>
-          <label for="questionId">当前题号</label>
-          <input id="questionId" [(ngModel)]="currentId">
-        </div>
-        <!-- <div><a routerLink="/edit" *ngIf="answer.length > 0">修改答案</a></div> -->
-        <div class="row">
-          <div class="col-12 col-md-8">
-            <mat-radio-group [(ngModel)]="nextType">
-              <mat-radio-button value="random" color="primary">随机出题</mat-radio-button>
-              <mat-radio-button value="queue" color="primary">顺序出题</mat-radio-button>
-            </mat-radio-group>
-          </div>
-          <div class="col-12 col-md-4" *ngIf="userService.loggedIn">
-              <mat-slide-toggle [checked]="onlyWrong" (change)="onlyWrong = !onlyWrong">
-                只看错题
-              </mat-slide-toggle>
-          </div>
-        </div>
-        <div class="btn-box">
-          <button (click)="getAnswer()" mat-raised-button color="primary" class="btn-block action-btn">显示答案</button>
-          <button (click)="getQuestion()" mat-raised-button  class="btn-block action-btn">下一题</button>
-        </div>
-        
-    </div>
-         
-  </mat-card-actions>
-
-</mat-card>
-
-
+  <mat-card-content>
+    <div>
+      <ul class="list-group">
+        <li *ngFor="let choice of question.choices" [class.active]="selected.includes(choice.id)" (click)="select(choice.id)" class="list-group-item choice">
+          <i class="material-icons done-icon" *ngIf="answer.includes(choice.id)">done</i>
+          {{choice.text}}
+        </li>
+      </ul>
+    </div>  
+  </mat-card-content>
+</div>
+<div *ngIf="!question">
+  <mat-card-header>
+    没有更多题目了
+  </mat-card-header>
+</div>

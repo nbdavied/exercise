@@ -1,5 +1,5 @@
 .list-group-item.active{
-    background-color: #3f51b5;
+    background-color: #007ACC;
 }
 
 .selected{
@@ -26,4 +26,5 @@ mat-radio-button{
 .btn-box{
     display: flex;
     justify-content: space-around;
+    margin-bottom: 15px;
 }

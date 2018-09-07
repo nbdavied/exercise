@@ -16,6 +16,7 @@ import { LoginBarComponent } from './component/login-bar/login-bar.component';
 import { SignupComponent } from './component/signup/signup.component';
 import { CustomMaterialModule } from './module/custom-material/custom-material.module';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { SingleQuesComponent } from './component/single-ques/single-ques.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -30,7 +31,8 @@ export function tokenGetter() {
     LoginComponent,
     LoginBarComponent,
     SignupComponent,
-    NavbarComponent
+    NavbarComponent,
+    SingleQuesComponent
   ],
   imports: [
     BrowserModule,

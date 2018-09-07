@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from '../../service/question.service';
 import { Question } from '../../entity/question';
@@ -10,50 +10,14 @@ import { UserService } from '../../service/user.service';
   styleUrls: ['./show-ques.component.css']
 })
 export class ShowQuesComponent implements OnInit {
-  question: Question;
-  nextType: string;
+  @Input() question: Question;
+  @Input() answer:number[];
+  @Output() selectChange = new EventEmitter<number[]>();
   selected: number[];
-  answer:number[];
-  currentId:number;
-  onlyWrong: boolean;
-  svgStyle: object = {
-    'fill': 'white',
-    'width.px': 16
-  };
-  constructor(private questionService:QuestionService,
-    private route: ActivatedRoute,
-    public userService: UserService) { }
 
+  constructor() { }
   ngOnInit() {
-    this.currentId = 0;
-    this.nextType = 'queue';
     this.selected = [];
-    this.answer = [];
-    this.onlyWrong = false;
-    this.getQuestion();
-  }
-  public getQuestion(){
-    const bankid = +this.route.snapshot.paramMap.get('bankid');
-    if(this.nextType == 'random'){
-      this.questionService.randomQuestion(bankid, this.onlyWrong)
-        .subscribe(question => {
-          this.question = question;
-          this.currentId = question.id;
-        }
-        );
-    }else{
-      var last = this.currentId;
-      this.questionService.nextQuestion(bankid, last, this.onlyWrong)
-        .subscribe(question => {
-          this.question = question;
-          this.currentId = question.id;
-        });
-    }
-    this.selected = [];
-    this.answer = [];
-  }
-  public getAnswer() {
-    this.questionService.getAnswer(this.question.id, this.selected).subscribe(answer => this.answer = answer);
   }
   private select(choiceid: number){
     if(this.question.type === 'm'){
@@ -65,5 +29,6 @@ export class ShowQuesComponent implements OnInit {
     }else{
       this.selected=[choiceid];
     }
+    this.selectChange.emit(this.selected);
   }
 }

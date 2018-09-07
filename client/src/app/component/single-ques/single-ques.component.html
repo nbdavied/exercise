@@ -1,0 +1,36 @@
+<mat-card>
+  <app-show-ques  [question]="question" [answer]="answer"
+    (selectChange)="onSelectChange($event)">
+  </app-show-ques>
+  
+  <mat-card-actions>
+    <div class="actions">
+      <div class="btn-box">
+        <button (click)="getAnswer()" mat-raised-button color="primary" class="btn-block action-btn">显示答案</button>
+        <button (click)="getQuestion()" mat-raised-button class="btn-block action-btn">下一题</button>
+      </div>
+      <div>
+        <mat-form-field>
+          <input id="questionId" matInput placeholder="当前题号" [(ngModel)]="currentId">
+        </mat-form-field>
+      </div>
+      <!-- <div><a routerLink="/edit" *ngIf="answer.length > 0">修改答案</a></div> -->
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <mat-radio-group [(ngModel)]="nextType">
+            <mat-radio-button value="random" color="primary">随机出题</mat-radio-button>
+            <mat-radio-button value="queue" color="primary">顺序出题</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="col-12 col-md-4" *ngIf="userService.loggedIn">
+          <mat-slide-toggle [checked]="onlyWrong" (change)="onlyWrong = !onlyWrong" color="primary">
+            只看错题
+          </mat-slide-toggle>
+        </div>
+      </div>
+
+    </div>
+
+  </mat-card-actions>
+
+</mat-card>
