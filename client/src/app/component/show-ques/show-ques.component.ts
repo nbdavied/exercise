@@ -13,7 +13,7 @@ export class ShowQuesComponent implements OnInit {
   @Input() question: Question;
   @Input() answer:number[];
   @Output() selectChange = new EventEmitter<number[]>();
-  selected: number[];
+  public selected: number[];
 
   constructor() { }
   ngOnInit() {

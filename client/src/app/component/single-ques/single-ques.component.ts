@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from '../../service/question.service';
 import { Question } from '../../entity/question';
 import { UserService } from '../../service/user.service';
+import { ShowQuesComponent } from '../show-ques/show-ques.component';
 
 @Component({
   selector: 'app-single-ques',
@@ -18,6 +19,9 @@ export class SingleQuesComponent implements OnInit {
   answer: number[];
   currentId: number;
   onlyWrong: boolean;
+  @ViewChild(ShowQuesComponent)
+  private showQuesComponent: ShowQuesComponent;
+
   constructor(private questionService: QuestionService,
     private route: ActivatedRoute,
     public userService: UserService) { }
@@ -47,6 +51,7 @@ export class SingleQuesComponent implements OnInit {
           this.currentId = question.id;
         });
     }
+    this.showQuesComponent.selected = [];
     this.selected = [];
     this.answer = [];
   }
