@@ -27,7 +27,12 @@ export class SingleQuesComponent implements OnInit {
     public userService: UserService) { }
 
   ngOnInit() {
-    this.currentId = 0;
+    if(localStorage.getItem('last_question_id')){
+      this.currentId = parseInt(localStorage.getItem('last_question_id'));
+    }else{
+      this.currentId = 0;
+    }
+    
     this.nextType = 'queue';
     this.selected = [];
     this.answer = [];
@@ -49,6 +54,7 @@ export class SingleQuesComponent implements OnInit {
         .subscribe(question => {
           this.question = question;
           this.currentId = question.id;
+          localStorage.setItem('last_question_id', this.currentId.toString());
         });
     }
     this.showQuesComponent.selected = [];
