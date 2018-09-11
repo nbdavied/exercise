@@ -18,7 +18,6 @@ import { CustomMaterialModule } from './module/custom-material/custom-material.m
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { SingleQuesComponent } from './component/single-ques/single-ques.component';
 import { PaperModule} from './paper/paper.module';
-import { BankListComponent } from './component/bank-list/bank-list.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -34,8 +33,7 @@ export function tokenGetter() {
     LoginBarComponent,
     SignupComponent,
     NavbarComponent,
-    SingleQuesComponent,
-    BankListComponent
+    SingleQuesComponent
   ],
   imports: [
     BrowserModule,

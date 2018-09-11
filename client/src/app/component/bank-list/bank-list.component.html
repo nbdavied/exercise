@@ -1,3 +1,6 @@
-<p>
-  bank-list works!
-</p>
+<div class="list-group">
+  <a *ngFor="let bank of banks" class="list-group-item list-group-item-action" 
+    (click)="selectBank(bank.id)" [class.active]="selectedId === bank.id">
+    {{bank.name}}
+  </a>
+</div>

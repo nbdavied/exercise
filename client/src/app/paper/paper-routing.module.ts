@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MakePaperComponent } from './component/make-paper/make-paper.component';
 import { PaperComponent } from './paper.component';
 import { PaperListComponent } from './component/paper-list/paper-list.component';
+import { DoPaperComponent } from './component/do-paper/do-paper.component';
 
 const paperRoutes: Routes = [
   { 
@@ -10,7 +11,8 @@ const paperRoutes: Routes = [
     component: PaperComponent,
     children:[
       {path:'', component: PaperListComponent},
-      {path:'new', component: MakePaperComponent}
+      {path:'new', component: MakePaperComponent},
+      {path:':id', component: DoPaperComponent}
     ]
 }
 ]

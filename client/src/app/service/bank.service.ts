@@ -15,6 +15,9 @@ export class BankService {
       catchError(this.handleError<Bank[]>('get banks',[]))
     );
   }
+  getQuesNum(bankId:number):Observable<Object>{
+    return this.http.get<Object>(`api/bank/count/${bankId}`);
+  }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

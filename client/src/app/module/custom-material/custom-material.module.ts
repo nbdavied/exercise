@@ -5,6 +5,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatCardModule,
     MatToolbarModule,
     BrowserAnimationsModule,
-    MatInputModule],
+    MatInputModule,
+    MatStepperModule],
   declarations: []
 })
 export class CustomMaterialModule { }
