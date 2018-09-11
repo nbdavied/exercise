@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Bank } from '../../../entity/bank';
 import { BankService } from '../../../service/bank.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { QuesNum } from '../../ques-num';
+import { TestPaper } from '../../entity/test-paper';
 
 @Component({
   selector: 'app-make-paper',
@@ -9,11 +12,19 @@ import { BankService } from '../../../service/bank.service';
 })
 export class MakePaperComponent implements OnInit {
   banks:Bank[];
-  selectedBankId:number;
-  constructor(private bankService: BankService) { }
+  typeFormGroup:FormGroup;
+  quesNum: QuesNum;
+  newpaper: TestPaper;
+  constructor(private bankService: BankService, private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.newpaper = new TestPaper();
     this.getBanks();
+    this.typeFormGroup = this._formBuilder.group({
+      sNum:['', [Validators.required, Validators.max(0)]],
+      mNum: ['', [Validators.required, Validators.max(0)]],
+      tNum: ['', [Validators.required, Validators.max(0)]]
+    })
   }
   private getBanks(){
     this.bankService.getBanks().subscribe(
@@ -21,6 +32,14 @@ export class MakePaperComponent implements OnInit {
     );
   }
   onBankSelected(bankId: number){
-    this.selectedBankId = bankId;
+    this.newpaper.bankId = bankId;
+    this.bankService.getQuesNum(bankId).subscribe(
+      result => {
+        this.quesNum = result;
+        this.typeFormGroup.controls["sNum"].setValidators([Validators.required, Validators.max(result.snum)]);
+        this.typeFormGroup.controls["mNum"].setValidators([Validators.required, Validators.max(result.mnum)]);
+        this.typeFormGroup.controls["tNum"].setValidators([Validators.required, Validators.max(result.tnum)]);
+      }
+    );
   }
 }

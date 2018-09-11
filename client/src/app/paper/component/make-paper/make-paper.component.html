@@ -1,10 +1,31 @@
 <mat-vertical-stepper [linear]="true">
-  <mat-step [completed]="selectedBankId">
+  <mat-step [completed]="newpaper.bankId">
     <ng-template matStepLabel>选择题库</ng-template>
     <app-bank-list [banks]="banks" *ngIf="banks" (selected)="onBankSelected($event)"></app-bank-list>
+    <div>
+      <button mat-button matStepperNext>下一步</button>
+    </div>
   </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>设置题型</ng-template>
+  <mat-step [stepControl]="typeFormGroup">
+    <form [formGroup]="typeFormGroup">
+      <ng-template matStepLabel>设置题型</ng-template>
+      <div class="input-field">
+        <mat-form-field hintLabel="最多{{quesNum?.snum||''}}题">
+          <input matInput placeholder="单选题数量" formControlName="sNum" required [(ngModel)]="newpaper.sNum">
+        </mat-form-field>
+        <mat-form-field hintLabel="最多{{quesNum?.mnum||''}}题">
+          <input matInput placeholder="多选题数量" formControlName="mNum" required [(ngModel)]="newpaper.mNum">
+        </mat-form-field>
+        <mat-form-field hintLabel="最多{{quesNum?.tnum||''}}题">
+          <input matInput placeholder="判断题数量" formControlName="tNum" required [(ngModel)]="newpaper.tNum">
+        </mat-form-field>
+      </div>
+      
+      <div>
+        <button mat-button matStepperPrevious>上一步</button>
+        <button mat-button matStepperNext>下一步</button>
+      </div>
+    </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>设置分值</ng-template>

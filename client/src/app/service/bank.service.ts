@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Bank } from '../entity/bank';
+import { QuesNum } from '../paper/ques-num';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class BankService {
       catchError(this.handleError<Bank[]>('get banks',[]))
     );
   }
-  getQuesNum(bankId:number):Observable<Object>{
-    return this.http.get<Object>(`api/bank/count/${bankId}`);
+  getQuesNum(bankId:number):Observable<QuesNum>{
+    return this.http.get<QuesNum>(`api/bank/count/${bankId}`);
   }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

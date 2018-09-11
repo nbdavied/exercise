@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MakePaperComponent } from './component/make-paper/make-paper.component';
 import { PaperRoutingModule } from './paper-routing.module';
 import { PaperComponent } from './paper.component';
@@ -15,6 +16,7 @@ import { BankListComponent } from '../component/bank-list/bank-list.component';
   imports: [
     CommonModule,
     CustomMaterialModule,
+    FormsModule, ReactiveFormsModule,
     PaperRoutingModule
   ],
   declarations: [
