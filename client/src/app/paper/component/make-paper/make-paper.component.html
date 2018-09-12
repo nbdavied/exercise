@@ -32,16 +32,19 @@
       <ng-template matStepLabel>设置分值</ng-template>
       <div class="input-field">
         <mat-form-field>
-          <input matInput placeholder="单选题分值" formControlName="sScore" required [(ngModel)]="newpaper.sScore">
+          <input matInput placeholder="单选题分值" formControlName="sScore" 
+            required [(ngModel)]="newpaper.sScore" (input)="scoreChange()">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="多选题分值" formControlName="mScore" required [(ngModel)]="newpaper.mScore">
+          <input matInput placeholder="多选题分值" formControlName="mScore" 
+            required [(ngModel)]="newpaper.mScore" (input)="scoreChange()">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="判断题分值" formControlName="tScore" required [(ngModel)]="newpaper.tScore">
+          <input matInput placeholder="判断题分值" formControlName="tScore" 
+            required [(ngModel)]="newpaper.tScore" (input)="scoreChange()">
         </mat-form-field>
       </div>
-    
+      <div>总分：{{newpaper.totalScore}}</div>
       <div>
         <button mat-button matStepperPrevious>上一步</button>
         <button mat-button (click)="submitPaper()">提交</button>
