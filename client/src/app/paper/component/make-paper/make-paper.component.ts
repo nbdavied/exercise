@@ -13,6 +13,7 @@ import { TestPaper } from '../../entity/test-paper';
 export class MakePaperComponent implements OnInit {
   banks:Bank[];
   typeFormGroup:FormGroup;
+  scoreFormGroup:FormGroup;
   quesNum: QuesNum;
   newpaper: TestPaper;
   constructor(private bankService: BankService, private _formBuilder: FormBuilder) { }
@@ -24,7 +25,12 @@ export class MakePaperComponent implements OnInit {
       sNum:['', [Validators.required, Validators.max(0)]],
       mNum: ['', [Validators.required, Validators.max(0)]],
       tNum: ['', [Validators.required, Validators.max(0)]]
-    })
+    });
+    this.scoreFormGroup = this._formBuilder.group({
+      sScore:['',[Validators.required]],
+      mScore: ['', [Validators.required]],
+      tScore: ['', [Validators.required]],
+    });
   }
   private getBanks(){
     this.bankService.getBanks().subscribe(
@@ -41,5 +47,8 @@ export class MakePaperComponent implements OnInit {
         this.typeFormGroup.controls["tNum"].setValidators([Validators.required, Validators.max(result.tnum)]);
       }
     );
+  }
+  submitPaper(){
+    
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute  } from '@angular/router';
 import { UserService } from '../../service/user.service';
 
 
@@ -12,9 +12,29 @@ export class LoginComponent implements OnInit {
   public username: string;
   public password: string;
   public error: string;
-  constructor(private userService: UserService, private router: Router) { }
+  code:string|null;
+  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.code = params['code'];
+    });
+  }
 
   ngOnInit() {
+    console.log(this.code);
+    if(this.isWeixinBrowser()){
+      
+      if(!this.code){
+        let redirectUrl = 'http://139.162.82.117/login';
+        redirectUrl = encodeURI(redirectUrl);
+        let appid = 'wx1f112f65ec5e875f';
+        let oauthUrl =  `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}
+&redirect_uri=${redirectUrl}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect`;
+        window.location.href=oauthUrl;
+      }else{
+        //TODO 发送code到服务器，获取登陆token
+      }
+
+    }
   }
   submit() {
     this.userService.login(this.username, this.password)
@@ -30,5 +50,9 @@ export class LoginComponent implements OnInit {
         },
         err => this.error = '登陆失败'
       );
+  }
+  private isWeixinBrowser():boolean{
+    let ua = navigator.userAgent.toLowerCase();
+    return (/micromessenger/.test(ua)) ? true : false;
   }
 }
