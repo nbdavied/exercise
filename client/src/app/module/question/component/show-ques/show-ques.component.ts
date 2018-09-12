@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { QuestionService } from '../../service/question.service';
-import { Question } from '../../entity/question';
-import { UserService } from '../../service/user.service';
+import { QuestionService } from '../../../../service/question.service';
+import { Question } from '../../../../entity/question';
+import { UserService } from '../../../../service/user.service';
 
 @Component({
   selector: 'app-show-ques',

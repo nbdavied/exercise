@@ -10,13 +10,14 @@ import { PaperService } from './service/paper.service';
 import { QuesListComponent } from './component/ques-list/ques-list.component';
 import { PaperQuesComponent } from './component/paper-ques/paper-ques.component';
 import { QuesTypeNavComponent } from './component/ques-type-nav/ques-type-nav.component';
-import { CustomMaterialModule } from '../module/custom-material/custom-material.module';
-import { BankListComponent } from '../component/bank-list/bank-list.component';
+import { CustomMaterialModule } from '../custom-material/custom-material.module';
+import { BankListComponent } from '../../component/bank-list/bank-list.component';
+import { QuestionModule } from '../question/question.module';
 @NgModule({
   imports: [
     CommonModule,
     CustomMaterialModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule, ReactiveFormsModule,QuestionModule,
     PaperRoutingModule
   ],
   declarations: [

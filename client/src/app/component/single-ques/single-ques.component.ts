@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from '../../service/question.service';
 import { Question } from '../../entity/question';
 import { UserService } from '../../service/user.service';
-import { ShowQuesComponent } from '../show-ques/show-ques.component';
+import { ShowQuesComponent } from '../../module/question/component/show-ques/show-ques.component';
 
 @Component({
   selector: 'app-single-ques',

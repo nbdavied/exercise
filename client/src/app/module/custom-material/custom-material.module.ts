@@ -6,6 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   imports: [
@@ -20,7 +22,9 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatToolbarModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatStepperModule],
+    MatStepperModule,
+    MatListModule,
+    MatTabsModule],
   declarations: []
 })
 export class CustomMaterialModule { }

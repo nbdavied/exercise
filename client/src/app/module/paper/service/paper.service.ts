@@ -12,4 +12,7 @@ export class PaperService {
   createPaper(paper: TestPaper):Observable<any>{
     return this.http.post<any>('/api/paper',paper);
   }
+  getPapers():Observable<TestPaper[]>{
+    return this.http.get<TestPaper[]>('/api/paper');
+  }
 }

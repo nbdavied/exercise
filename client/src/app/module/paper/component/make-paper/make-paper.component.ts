@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Bank } from '../../../entity/bank';
-import { BankService } from '../../../service/bank.service';
+import { Bank } from '../../../../entity/bank';
+import { BankService } from '../../../../service/bank.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuesNum } from '../../ques-num';
 import { TestPaper } from '../../entity/test-paper';
