@@ -33,6 +33,9 @@ export class QuestionService {
       catchError(this.handleError<number[]>('getAnswer',[]))
     );
   }
+  getQuestionsInPaper(paperId: number, type:string):Observable<Question[]>{
+    return this.http.get<Question[]>(`/api/question?paperId=${paperId}&type=${type}`);
+  }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

@@ -1,12 +1,12 @@
 <app-ques-type-nav></app-ques-type-nav>
 <mat-tab-group>
   <mat-tab label="单选题">
-    <app-ques-list></app-ques-list>
+    <app-ques-list [paperId]="paperId" [type]="'s'"></app-ques-list>
   </mat-tab>
   <mat-tab label="多选题">
-    <app-ques-list></app-ques-list>
+    <app-ques-list [paperId]="paperId" [type]="'m'"></app-ques-list>
   </mat-tab>
   <mat-tab label="判断题">
-    <app-ques-list></app-ques-list>
+    <app-ques-list [paperId]="paperId" [type]="'t'"></app-ques-list>
   </mat-tab>
 </mat-tab-group>
