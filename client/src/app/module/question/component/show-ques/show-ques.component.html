@@ -11,7 +11,7 @@
   <mat-card-content>
     <div>
       <ul class="list-group">
-        <li *ngFor="let choice of question.choices" [class.active]="selected.includes(choice.id)" (click)="select(choice.id)" class="list-group-item choice">
+        <li *ngFor="let choice of question.choices" [class.active]="selected && selected.includes(choice.id)" (click)="select(choice.id)" class="list-group-item choice">
           <i class="material-icons done-icon" *ngIf="answer.includes(choice.id)">done</i>
           {{choice.text}}
         </li>

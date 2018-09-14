@@ -13,11 +13,10 @@ export class ShowQuesComponent implements OnInit {
   @Input() question: Question;
   @Input() answer:number[];
   @Output() selectChange = new EventEmitter<number[]>();
-  public selected: number[];
+  @Input() selected: number[];
 
   constructor() { }
   ngOnInit() {
-    this.selected = [];
   }
   private select(choiceid: number){
     if(this.question.type === 'm'){
@@ -31,4 +30,5 @@ export class ShowQuesComponent implements OnInit {
     }
     this.selectChange.emit(this.selected);
   }
+
 }

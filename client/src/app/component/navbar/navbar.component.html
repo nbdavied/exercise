@@ -1,6 +1,7 @@
 <nav class="docs-navbar-header">
   <span mat-button>TEST YOURSELF</span>
-  <a mat-button routerLink="banks" class="docs-navbar-hide-small">选择题库</a>
+  <a mat-button routerLink="banks" class="docs-navbar-hide-small">随便做做</a>
+  <a mat-button routerLink="paper" class="docs-navbar-hide-small">正式测验</a>
   <div class="flex-spacer"></div>
   <div *ngIf="!userService.loggedIn" class="user-area">
     <a mat-button routerLink="login">登陆</a>
@@ -12,5 +13,6 @@
   </div>
 </nav>
 <nav class="docs-navbar-show-small">
-    <a mat-button routerLink="banks">选择题库</a>
+    <a mat-button routerLink="banks">随便做做</a>
+    <a mat-button routerLink="paper">正式测验</a>
 </nav>
