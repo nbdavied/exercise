@@ -1,3 +1,4 @@
 <mat-card *ngFor="let question of questions">
-  <app-show-ques [question]="question" [answer]="[]"></app-show-ques>
+  <app-show-ques [question]="question" [selected]="question.selected"
+    (selectChange)="onSelectChange(question.id, $event)"></app-show-ques>
 </mat-card>

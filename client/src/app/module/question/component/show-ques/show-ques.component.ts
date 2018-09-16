@@ -20,7 +20,9 @@ export class ShowQuesComponent implements OnInit {
   }
   private select(choiceid: number){
     if(this.question.type === 'm'){
-      if(this.selected.includes(choiceid)){
+      if(!this.selected){
+        this.selected = [choiceid];
+      }else if(this.selected.includes(choiceid)){
         this.selected.splice(this.selected.indexOf(choiceid), 1);
       }else{
         this.selected.push(choiceid);

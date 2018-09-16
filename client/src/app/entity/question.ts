@@ -6,4 +6,5 @@ export class Question{
     choices: Choice[];
     type: string;
     editFlag: string;
+    selected: number[];
 }

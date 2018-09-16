@@ -9,10 +9,11 @@ import { DoPaperComponent } from './component/do-paper/do-paper.component';
 import { PaperService } from './service/paper.service'; 
 import { QuesListComponent } from './component/ques-list/ques-list.component';
 import { PaperQuesComponent } from './component/paper-ques/paper-ques.component';
-import { QuesTypeNavComponent } from './component/ques-type-nav/ques-type-nav.component';
 import { CustomMaterialModule } from '../custom-material/custom-material.module';
 import { BankListComponent } from '../../component/bank-list/bank-list.component';
 import { QuestionModule } from '../question/question.module';
+import { ToTopComponent } from './component/to-top/to-top.component';
+import { TimerComponent } from './component/timer/timer.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -27,8 +28,9 @@ import { QuestionModule } from '../question/question.module';
     DoPaperComponent,
     QuesListComponent,
     PaperQuesComponent,
-    QuesTypeNavComponent,
-    BankListComponent
+    BankListComponent,
+    ToTopComponent,
+    TimerComponent
   ],
   providers:[
     PaperService

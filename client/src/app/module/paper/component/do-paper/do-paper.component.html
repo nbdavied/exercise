@@ -1,4 +1,7 @@
-<app-ques-type-nav></app-ques-type-nav>
+<mat-toolbar>
+  <app-timer></app-timer>
+  <button mat-button>交卷</button>
+</mat-toolbar>
 <mat-tab-group>
   <mat-tab label="单选题">
     <app-ques-list [paperId]="paperId" [type]="'s'"></app-ques-list>
