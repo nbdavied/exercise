@@ -14,6 +14,7 @@ import { BankListComponent } from '../../component/bank-list/bank-list.component
 import { QuestionModule } from '../question/question.module';
 import { ToTopComponent } from './component/to-top/to-top.component';
 import { TimerComponent } from './component/timer/timer.component';
+import { ShowResultComponent } from './component/show-result/show-result.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -30,7 +31,8 @@ import { TimerComponent } from './component/timer/timer.component';
     PaperQuesComponent,
     BankListComponent,
     ToTopComponent,
-    TimerComponent
+    TimerComponent,
+    ShowResultComponent
   ],
   providers:[
     PaperService

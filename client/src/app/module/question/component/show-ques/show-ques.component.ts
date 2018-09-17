@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from '../../../../service/question.service';
 import { Question } from '../../../../entity/question';
 import { UserService } from '../../../../service/user.service';
+import { Subject,of } from 'rxjs';
+import { PaperQuestion } from '../../../paper/entity/paper-question';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-show-ques',
@@ -14,9 +17,16 @@ export class ShowQuesComponent implements OnInit {
   @Input() answer:number[];
   @Output() selectChange = new EventEmitter<number[]>();
   @Input() selected: number[];
+  private selectTerm = new Subject<number[]>();
 
   constructor() { }
   ngOnInit() {
+    this.selectTerm.pipe(
+      //设置保存频率2秒
+      debounceTime(2000),
+      distinctUntilChanged(),
+      switchMap((select) => of( this.selectChange.emit(select)))
+    ).subscribe();
   }
   private select(choiceid: number){
     if(this.question.type === 'm'){
@@ -30,7 +40,7 @@ export class ShowQuesComponent implements OnInit {
     }else{
       this.selected=[choiceid];
     }
-    this.selectChange.emit(this.selected);
+    this.selectTerm.next(this.selected);
   }
 
 }

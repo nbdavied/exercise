@@ -36,6 +36,7 @@ export class QuesListComponent implements OnInit {
     q.questionId = questionId;
     q.selected = selected;
     q.paperId = this.paperId;
-    this.selectTerm.next(q);
+    //this.selectTerm.next(q);
+    this.paperService.saveSelected(q).subscribe();
   }
 }

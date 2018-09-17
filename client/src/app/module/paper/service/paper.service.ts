@@ -19,4 +19,7 @@ export class PaperService {
   saveSelected(q: PaperQuestion):Observable<any>{
     return this.http.post<any>('/api/paper/select', q);
   }
+  finishPaper(paperId: number):Observable<number>{
+    return this.http.post<number>('/api/paper/finish', {"id":paperId});
+  }
 }

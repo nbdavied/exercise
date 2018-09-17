@@ -4,15 +4,18 @@ import { MakePaperComponent } from './component/make-paper/make-paper.component'
 import { PaperComponent } from './paper.component';
 import { PaperListComponent } from './component/paper-list/paper-list.component';
 import { DoPaperComponent } from './component/do-paper/do-paper.component';
+import { AuthGuard } from '../../auth.guard';
+import { ShowResultComponent } from './component/show-result/show-result.component';
 
 const paperRoutes: Routes = [
   { 
     path: 'paper', 
     component: PaperComponent,
     children:[
-      {path:'', component: PaperListComponent},
-      {path:'new', component: MakePaperComponent},
-      {path:':id', component: DoPaperComponent}
+      { path: '', component: PaperListComponent, canActivate: [AuthGuard]},
+      { path: 'new', component: MakePaperComponent, canActivate: [AuthGuard]},
+      { path: ':id', component: DoPaperComponent, canActivate: [AuthGuard]},
+      { path: 'result/:id', component: ShowResultComponent, canActivate: [AuthGuard]}
     ]
 }
 ]
