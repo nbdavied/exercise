@@ -3,12 +3,13 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Question } from '../entity/question';
 import { HttpClient } from '@angular/common/http';
+import { HandleErrorService } from './handle-error.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private errorHandler: HandleErrorService) { }
 
   nextQuestion(bankid:number, last:number, onlyWrong:boolean):Observable<Question>{
     var wrong = '0';
@@ -16,7 +17,7 @@ export class QuestionService {
       wrong = '1';
     }
     return this.http.get<Question>(`/api/question/next?bankId=${bankid}&last=${last}&wrong=${wrong}`).pipe(
-      catchError(this.handleError<Question>('nextQuestion'))
+      catchError(this.handleError<Question>())
     );
   }
   randomQuestion(bankid:number, onlyWrong:boolean):Observable<Question>{
@@ -25,31 +26,23 @@ export class QuestionService {
       wrong = '1';
     }
     return this.http.get<Question>(`/api/question/random?bankId=${bankid}&wrong=${wrong}`).pipe(
-      catchError(this.handleError<Question>('nextQuestion'))
+      catchError(this.handleError<Question>())
     );
   }
   getAnswer(questionId:number, answer:number[]):Observable<number[]>{
     return this.http.post<number[]>(`/api/question/answer/${questionId}`, answer).pipe(
-      catchError(this.handleError<number[]>('getAnswer',[]))
+      catchError(this.handleError<number[]>([]))
     );
   }
   getQuestionsInPaper(paperId: number, type:string):Observable<Question[]>{
-    return this.http.get<Question[]>(`/api/question?paperId=${paperId}&type=${type}`);
+    return this.http.get<Question[]>(`/api/question?paperId=${paperId}&type=${type}`).pipe(
+      catchError(this.handleError<Question[]>([]))
+    );
   }
-  private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T>(result?: T) {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
+      this.errorHandler.openSnackBar(error.statusText);
       return of(result as T);
     };
-  }
-  private log(msg: string):void{
-
   }
 }

@@ -17,6 +17,8 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { SingleQuesComponent } from './component/single-ques/single-ques.component';
 import { PaperModule} from './module/paper/paper.module';
 import { QuestionModule } from './module/question/question.module';
+import { MatSnackBar } from '@angular/material';
+import { HandleErrorService } from './service/handle-error.service';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -51,7 +53,8 @@ export function tokenGetter() {
   ],
   providers: [
     QuestionService,
-    UserService
+    UserService,
+    HandleErrorService
   ],
   bootstrap: [AppComponent]
 })
