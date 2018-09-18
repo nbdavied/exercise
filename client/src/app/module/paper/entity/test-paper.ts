@@ -12,4 +12,6 @@ export class TestPaper{
     mScore: number;
     tScore: number;
     totalScore: number;
+    totalTime: number;
+    restTime: number;
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatCheckboxModule, MatSlideToggleModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatSlideToggleModule, MatSnackBarModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
@@ -24,7 +24,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatInputModule,
     MatStepperModule,
     MatListModule,
-    MatTabsModule],
+    MatTabsModule,
+    MatSnackBarModule
+  ],
   declarations: []
 })
 export class CustomMaterialModule { }
