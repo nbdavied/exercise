@@ -1,3 +1,9 @@
-<p>
-  show-result works!
-</p>
+<table class="table">
+  <thead></thead>
+  <tbody>
+    <tr *ngFor="let result of results">
+      <td>{{result.subTime}}</td>
+      <td>{{result.score}}</td>
+    </tr>
+  </tbody>
+</table>
