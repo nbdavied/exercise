@@ -34,6 +34,11 @@ export class PaperService {
   startPaper(paperId: number):Observable<TestPaper>{
     return this.http.post<TestPaper>('/api/paper/start', {"id":paperId});
   }
+  updateRestTime(paperId: number, restTime:number):Observable<any>{
+    return this.http.post<any>('/api/paper/time', {"id":paperId, "restTime":restTime}).pipe(
+      catchError(this.handleError<any>())
+    );
+  }
   private handleError<T>(result?: T) {
     return (error: any): Observable<T> => {
       this.errorHandler.openSnackBar(error.statusText);

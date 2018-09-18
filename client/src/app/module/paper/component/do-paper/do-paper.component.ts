@@ -59,4 +59,7 @@ export class DoPaperComponent implements OnInit {
       }
     )
   }
+  updateRestTime(rest:number){
+    this.paperService.updateRestTime(this.paperId, rest).subscribe();
+  }
 }

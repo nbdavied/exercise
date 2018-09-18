@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <app-timer [initTime]="restTime" [eventInterval]="10000" #timer></app-timer>
+  <app-timer [initTime]="restTime" [heartbeatTime]="10" (heartbeat)="updateRestTime($event)" (timeup)="finishPaper()"></app-timer>
   <button mat-button (click)="finishPaper()">交卷</button>
 </mat-toolbar>
 <mat-tab-group>
