@@ -17,8 +17,8 @@ export class TimerComponent implements OnInit {
   @Output() timeup = new EventEmitter();
   private intervalId = 0;
   private restTime:number;
-  private minutes:number;
-  private seconds:number;
+  minutes:number;
+  seconds:number;
   constructor() { }
 
   ngOnInit() {
