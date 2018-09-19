@@ -2,6 +2,7 @@
   <mat-list-item *ngFor="let paper of papers">
     <div class="paper-item">
       <div>{{paper.paperNo}}</div>
+      <mat-divider [vertical]="true" [inset]="true"></mat-divider>
       <div>{{paper.bankName}}</div>
       <div>{{paper.status}}</div>
       <a routerLink="{{paper.id}}">开始考试</a>
@@ -9,3 +10,24 @@
   </mat-list-item>
   <a mat-button routerLink="new">新增试卷</a>
 </mat-list>
+<table class="table">
+  <thead>
+    <td>题库来源</td>
+    <td>试卷号</td>
+    <td>状态</td>
+    <td>剩余时间</td>
+    <td></td>
+  </thead>
+  <tbody>
+    <tr *ngFor="let paper of papers">
+      <td>{{paper.bankName}}</td>
+      <td>{{paper.paperNo}}</td>
+      <td>{{paper.status | paperStatus}}</td>
+      <td><span *ngIf="paper.status == '1'">{{paper.restTime/60 | floor}}分钟</span></td>
+      <td>
+        <a mat-button routerLink="{{paper.id}}">进入考试</a>
+        <a mat-button routerLink="result/{{paper.id}}">查看成绩</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

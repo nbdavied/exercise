@@ -23,7 +23,7 @@ export class TimerComponent implements OnInit {
 
   ngOnInit() {
   }
-  ngAfterViewInit(){
+  ngOnChanges(){
     this.restTime = this.initTime;
     
   }

@@ -15,6 +15,8 @@ import { QuestionModule } from '../question/question.module';
 import { ToTopComponent } from './component/to-top/to-top.component';
 import { TimerComponent } from './component/timer/timer.component';
 import { ShowResultComponent } from './component/show-result/show-result.component';
+import { PaperStatusPipe } from './pipe/paper-status.pipe';
+import { FloorPipe } from './pipe/floor.pipe';
 @NgModule({
   imports: [
     CommonModule,
@@ -32,7 +34,9 @@ import { ShowResultComponent } from './component/show-result/show-result.compone
     BankListComponent,
     ToTopComponent,
     TimerComponent,
-    ShowResultComponent
+    ShowResultComponent,
+    PaperStatusPipe,
+    FloorPipe
   ],
   providers:[
     PaperService

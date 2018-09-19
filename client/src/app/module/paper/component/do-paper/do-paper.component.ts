@@ -50,7 +50,7 @@ export class DoPaperComponent implements OnInit {
   finishPaper(){
     this.paperService.finishPaper(this.paperId).subscribe(
       resultId =>{
-        this.router.navigate([`paper/result/${resultId}`]);
+        this.router.navigate([`paper/result/${this.paperId}`]);
       },
       error =>{
         this.snackBar.open("提交试卷失败", "确定", {
