@@ -9,6 +9,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatListModule,
     MatTabsModule,
     MatSnackBarModule,
-    MatDividerModule
+    MatDividerModule,
+    MatIconModule
   ],
   declarations: []
 })

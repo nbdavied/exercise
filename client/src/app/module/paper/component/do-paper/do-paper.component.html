@@ -1,3 +1,6 @@
+<button mat-mini-fab class="fab-button" (click)="scrollToTop()">
+  <mat-icon>arrow_upward</mat-icon>
+</button>
 <mat-toolbar>
   <app-timer [initTime]="restTime" [heartbeatTime]="10" (heartbeat)="updateRestTime($event)" (timeup)="finishPaper()"></app-timer>
   <button mat-button (click)="finishPaper()">交卷</button>
