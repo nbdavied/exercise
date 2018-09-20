@@ -48,7 +48,7 @@ export class PaperService {
   }
   getResultDetail(resultId:number,type:string, onlyWrong:boolean):Observable<Question[]>{
     return this.http.get<Question[]>(`/api/paper/detail/${resultId}?type=${type}&onlywrong=${onlyWrong}`).pipe(
-      catchError(this.handleError<[]>([]))
+      catchError(this.handleError<Question[]>([]))
     );
   }
   private handleError<T>(result?: T) {
