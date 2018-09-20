@@ -7,4 +7,5 @@ export class Question{
     type: string;
     editFlag: string;
     selected: number[];
+    answers: number[];
 }

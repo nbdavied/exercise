@@ -1,3 +1,19 @@
-<p>
-  show-result-detail works!
-</p>
+<button mat-mini-fab class="fab-button" (click)="scrollToTop()">
+  <mat-icon>arrow_upward</mat-icon>
+</button>
+<mat-toolbar>
+  <mat-slide-toggle [checked]="onlyWrong" (change)="toggleOnlyWrong()" color="primary">
+    只看错题
+  </mat-slide-toggle>
+</mat-toolbar>
+<mat-tab-group>
+  <mat-tab label="单选题">
+    <app-ques-list [questions]="single" [selectable]="false"></app-ques-list>
+  </mat-tab>
+  <mat-tab label="多选题">
+    <app-ques-list [questions]="multi" [selectable]="false"></app-ques-list>
+  </mat-tab>
+  <mat-tab label="判断题">
+    <app-ques-list [questions]="truefalse" [selectable]="false"></app-ques-list>
+  </mat-tab>
+</mat-tab-group>
