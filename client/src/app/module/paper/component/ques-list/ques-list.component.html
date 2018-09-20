@@ -1,4 +1,4 @@
 <mat-card *ngFor="let question of questions">
   <app-show-ques [question]="question" [selected]="question.selected"
-    (selectChange)="onSelectChange(question.id, $event)"></app-show-ques>
+    (selectChange)="onSelectChange(question.id, $event)" [selectable]="selectable"></app-show-ques>
 </mat-card>

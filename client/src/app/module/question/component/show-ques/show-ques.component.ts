@@ -16,6 +16,7 @@ export class ShowQuesComponent implements OnInit {
   @Input() question: Question;
   @Input() answer:number[];
   @Output() selectChange = new EventEmitter<number[]>();
+  @Input() selectable:boolean;
   @Input() selected: number[];
   private selectTerm = new Subject<number[]>();
 
@@ -29,18 +30,20 @@ export class ShowQuesComponent implements OnInit {
     ).subscribe();
   }
   private select(choiceid: number){
-    if(this.question.type === 'm'){
-      if(!this.selected){
-        this.selected = [choiceid];
-      }else if(this.selected.includes(choiceid)){
-        this.selected.splice(this.selected.indexOf(choiceid), 1);
+    if(this.selectable){
+      if(this.question.type === 'm'){
+        if(!this.selected){
+          this.selected = [choiceid];
+        }else if(this.selected.includes(choiceid)){
+          this.selected.splice(this.selected.indexOf(choiceid), 1);
+        }else{
+          this.selected.push(choiceid);
+        }
       }else{
-        this.selected.push(choiceid);
+        this.selected=[choiceid];
       }
-    }else{
-      this.selected=[choiceid];
+      this.selectTerm.next(this.selected);
     }
-    this.selectTerm.next(this.selected);
   }
 
 }

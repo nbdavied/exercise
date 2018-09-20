@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Question } from '../../../../entity/question';
 import { QuestionService } from '../../../../service/question.service';
 import { PaperQuestion } from '../../entity/paper-question';
@@ -11,6 +11,8 @@ import { PaperService } from '../../service/paper.service';
 export class QuesListComponent implements OnInit {
   @Input() paperId: number;
   @Input() questions: Question[];
+  @Input() selectable: boolean;
+  @Output() select = new EventEmitter<PaperQuestion>();
   constructor(private questionService: QuestionService, private paperService: PaperService) { }
 
   ngOnInit() {
@@ -21,7 +23,7 @@ export class QuesListComponent implements OnInit {
     q.questionId = questionId;
     q.selected = selected;
     q.paperId = this.paperId;
-    //this.selectTerm.next(q);
-    this.paperService.saveSelected(q).subscribe();
+    this.select.emit(q);
+    //this.paperService.saveSelected(q).subscribe();
   }
 }

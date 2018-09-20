@@ -7,12 +7,15 @@
 </mat-toolbar>
 <mat-tab-group>
   <mat-tab label="单选题">
-    <app-ques-list [questions]="single" [paperId]="paperId"></app-ques-list>
+    <app-ques-list [questions]="single" [paperId]="paperId" 
+      (select)="onSelectChange($event)" [selectable]="true"></app-ques-list>
   </mat-tab>
   <mat-tab label="多选题">
-    <app-ques-list [questions]="multi" [paperId]="paperId"></app-ques-list>
+    <app-ques-list [questions]="multi" [paperId]="paperId" 
+      (select)="onSelectChange($event)" [selectable]="true"></app-ques-list>
   </mat-tab>
   <mat-tab label="判断题">
-    <app-ques-list [questions]="truefalse" [paperId]="paperId"></app-ques-list>
+    <app-ques-list [questions]="truefalse" [paperId]="paperId" 
+      (select)="onSelectChange($event)" [selectable]="true"></app-ques-list>
   </mat-tab>
 </mat-tab-group>

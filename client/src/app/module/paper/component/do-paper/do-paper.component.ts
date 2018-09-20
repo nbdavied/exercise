@@ -5,6 +5,7 @@ import { Question } from '../../../../entity/question';
 import { QuestionService } from '../../../../service/question.service';
 import { MatSnackBar } from '@angular/material';
 import { TimerComponent } from '../timer/timer.component';
+import { PaperQuestion } from '../../entity/paper-question';
 @Component({
   selector: 'app-do-paper',
   templateUrl: './do-paper.component.html',
@@ -64,5 +65,8 @@ export class DoPaperComponent implements OnInit {
   }
   scrollToTop(){
     window.scroll(0,0);
+  }
+  onSelectChange(q : PaperQuestion){
+    this.paperService.saveSelected(q).subscribe();
   }
 }
