@@ -15,8 +15,10 @@ export class MakePaperComponent implements OnInit {
   banks:Bank[];
   typeFormGroup:FormGroup;
   scoreFormGroup:FormGroup;
+  timeFormGroup:FormGroup;
   quesNum: QuesNum;
   newpaper: TestPaper;
+  totalTime: number;
   constructor(private bankService: BankService, private _formBuilder: FormBuilder,
     private paperService: PaperService, private router: Router) { }
 
@@ -33,6 +35,9 @@ export class MakePaperComponent implements OnInit {
       mScore: ['', [Validators.required]],
       tScore: ['', [Validators.required]],
     });
+    this.timeFormGroup = this._formBuilder.group({
+      time:['',[Validators.required]]
+    })
   }
   private getBanks(){
     this.bankService.getBanks().subscribe(
@@ -57,6 +62,7 @@ export class MakePaperComponent implements OnInit {
     this.newpaper.totalScore = totalScore;
   }
   submitPaper(){
+    this.newpaper.totalTime = this.totalTime * 60;
     this.paperService.createPaper(this.newpaper).subscribe(result =>{
       this.router.navigateByUrl('/paper');
     });

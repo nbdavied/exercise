@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -25,7 +27,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatStepperModule,
     MatListModule,
     MatTabsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDividerModule,
+    MatIconModule
   ],
   declarations: []
 })

@@ -5,6 +5,8 @@ import { Observable, of } from 'rxjs';
 import { PaperQuestion } from '../entity/paper-question';
 import { HandleErrorService } from '../../../service/handle-error.service';
 import { catchError } from 'rxjs/operators';
+import { TestResult } from '../entity/test-result';
+import { Question } from '../../../entity/question';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,6 +35,21 @@ export class PaperService {
   }
   startPaper(paperId: number):Observable<TestPaper>{
     return this.http.post<TestPaper>('/api/paper/start', {"id":paperId});
+  }
+  updateRestTime(paperId: number, restTime:number):Observable<any>{
+    return this.http.post<any>('/api/paper/time', {"id":paperId, "restTime":restTime}).pipe(
+      catchError(this.handleError<any>())
+    );
+  }
+  getResults(paperId:number):Observable<TestResult[]>{
+    return this.http.get<TestResult[]>(`/api/paper/result?paperId=${paperId}`).pipe(
+      catchError(this.handleError<TestResult[]>([]))
+    );
+  }
+  getResultDetail(resultId:number,type:string, onlyWrong:boolean):Observable<Question[]>{
+    return this.http.get<Question[]>(`/api/paper/detail/${resultId}?type=${type}&onlywrong=${onlyWrong}`).pipe(
+      catchError(this.handleError<Question[]>([]))
+    );
   }
   private handleError<T>(result?: T) {
     return (error: any): Observable<T> => {

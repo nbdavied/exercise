@@ -11,7 +11,8 @@
       <ng-template matStepLabel>设置题型</ng-template>
       <div class="input-field">
         <mat-form-field hintLabel="最多{{quesNum?.snum||''}}题">
-          <input matInput placeholder="单选题数量" formControlName="sNum" required [(ngModel)]="newpaper.sNum">
+          <input matInput placeholder="单选题数量" formControlName="sNum" required 
+            [(ngModel)]="newpaper.sNum">
         </mat-form-field>
         <mat-form-field hintLabel="最多{{quesNum?.mnum||''}}题">
           <input matInput placeholder="多选题数量" formControlName="mNum" required [(ngModel)]="newpaper.mNum">
@@ -45,6 +46,21 @@
         </mat-form-field>
       </div>
       <div>总分：{{newpaper.totalScore}}</div>
+      <div>
+        <button mat-button matStepperPrevious>上一步</button>
+        <button mat-button matStepperNext>下一步</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <form [formGroup]="timeFormGroup">
+      <ng-template matStepLabel>考试时间</ng-template>
+      <div class="input-field">
+        <mat-form-field>
+          <input matInput placeholder="考试时间（分钟）" formControlName="time"
+            required [(ngModel)]="totalTime">
+        </mat-form-field>
+      </div>
       <div>
         <button mat-button matStepperPrevious>上一步</button>
         <button mat-button (click)="submitPaper()">提交</button>

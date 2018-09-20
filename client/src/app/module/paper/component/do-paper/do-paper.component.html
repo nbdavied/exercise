@@ -1,15 +1,21 @@
+<button mat-mini-fab class="fab-button" (click)="scrollToTop()">
+  <mat-icon>arrow_upward</mat-icon>
+</button>
 <mat-toolbar>
-  <app-timer></app-timer>
+  <app-timer [initTime]="restTime" [heartbeatTime]="10" (heartbeat)="updateRestTime($event)" (timeup)="finishPaper()"></app-timer>
   <button mat-button (click)="finishPaper()">交卷</button>
 </mat-toolbar>
 <mat-tab-group>
   <mat-tab label="单选题">
-    <app-ques-list [paperId]="paperId" [type]="'s'"></app-ques-list>
+    <app-ques-list [questions]="single" [paperId]="paperId" 
+      (select)="onSelectChange($event)" [selectable]="true"></app-ques-list>
   </mat-tab>
   <mat-tab label="多选题">
-    <app-ques-list [paperId]="paperId" [type]="'m'"></app-ques-list>
+    <app-ques-list [questions]="multi" [paperId]="paperId" 
+      (select)="onSelectChange($event)" [selectable]="true"></app-ques-list>
   </mat-tab>
   <mat-tab label="判断题">
-    <app-ques-list [paperId]="paperId" [type]="'t'"></app-ques-list>
+    <app-ques-list [questions]="truefalse" [paperId]="paperId" 
+      (select)="onSelectChange($event)" [selectable]="true"></app-ques-list>
   </mat-tab>
 </mat-tab-group>

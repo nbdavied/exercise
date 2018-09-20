@@ -1,3 +1,10 @@
-<p>
-  show-result works!
-</p>
+<table class="table">
+  <thead></thead>
+  <tbody>
+    <tr *ngFor="let result of results">
+      <td>{{result.subTime}}</td>
+      <td>{{result.score}}</td>
+      <td><a mat-button routerLink="/paper/detail/{{result.id}}">查看明细</a></td>
+    </tr>
+  </tbody>
+</table>
