@@ -17,6 +17,7 @@ import { TimerComponent } from './component/timer/timer.component';
 import { ShowResultComponent } from './component/show-result/show-result.component';
 import { PaperStatusPipe } from './pipe/paper-status.pipe';
 import { FloorPipe } from './pipe/floor.pipe';
+import { ShowResultDetailComponent } from './component/show-result-detail/show-result-detail.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -36,7 +37,8 @@ import { FloorPipe } from './pipe/floor.pipe';
     TimerComponent,
     ShowResultComponent,
     PaperStatusPipe,
-    FloorPipe
+    FloorPipe,
+    ShowResultDetailComponent
   ],
   providers:[
     PaperService
