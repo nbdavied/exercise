@@ -2,7 +2,7 @@
   <thead></thead>
   <tbody>
     <tr *ngFor="let result of results">
-      <td>{{result.subTime}}</td>
+      <td>{{result.subTime | date:'MM-dd HH:mm'}}</td>
       <td>{{result.score}}</td>
       <td><a mat-button routerLink="/paper/detail/{{result.id}}">查看明细</a></td>
     </tr>
