@@ -1,24 +1,28 @@
 
-<a mat-button routerLink="new">新增试卷</a>
-
-<table class="table">
-  <thead>
-    <td>题库来源</td>
-    <td>试卷号</td>
-    <td>状态</td>
-    <td>剩余时间</td>
-    <td></td>
-  </thead>
-  <tbody>
-    <tr *ngFor="let paper of papers">
-      <td>{{paper.bankName}}</td>
-      <td>{{paper.paperNo}}</td>
-      <td>{{paper.status | paperStatus}}</td>
-      <td><span *ngIf="paper.status == '1'">{{paper.restTime/60 | floor}}分钟</span></td>
-      <td>
-        <a mat-button routerLink="{{paper.id}}">进入考试</a>
-        <a mat-button routerLink="result/{{paper.id}}">查看成绩</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<a mat-flat-button color="accent" routerLink="new" class="new-btn">新增试卷</a>
+<div class="paper-title">
+  <div class="peper-no paper-no">试卷编号</div>
+  <div class="bank-name bank-name">题库来源</div>
+  <div class="space"></div>
+</div>
+<div class="paper-list">
+  <div *ngFor="let paper of papers; last as last" class="flex paper-item">
+    <div class="paper-data">
+      <div class="flex paper-main">
+        <div class="paper-no item-ele">{{paper.paperNo}}</div>
+        <div class="bank-name item-ele">{{paper.bankName}}</div>
+        <div class="space item-ele"></div>
+      </div>
+      <div class="flex status-line">
+          <div class="paper-status small-size">{{paper.status | paperStatus}}</div>
+          <div class="paper-rest-time small-size" *ngIf="paper.status == '1'">剩余 {{paper.restTime/60 | floor}} 分钟</div>
+      </div>
+    </div>
+    <div class="space"></div>
+    <div class="op-btns">
+      <a mat-flat-button color="primary" routerLink="{{paper.id}}" class="start-btn">进入考试</a>
+      <a mat-stroked-button color="primary" routerLink="result/{{paper.id}}">查看成绩</a>
+    </div>
+    <mat-divider ></mat-divider>
+  </div>
+<div>

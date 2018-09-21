@@ -1,3 +1,76 @@
+.new-btn{
+    width: 100%;
+}
+.paper-title{
+    display: flex;
+    margin-bottom: 8px;
+    margin-top: 16px;
+}
 .paper-item{
     display: flex;
+    /* justify-content: space-between; */
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+.paper-data{
+    display: flex;
+    flex-wrap: wrap;
+}
+.flex{
+    display: flex;
+}
+.bank-name{
+    width: 100px;
+}
+.paper-no{
+    width: 100px;
+}
+.paper-status{
+    width: 50px;
+}
+.paper-rest-time{
+    
+}
+.space{
+    flex-grow: 1;
+}
+.op-btns{
+    display: flex;
+}
+.start-btn{
+    margin-right: 8px;
+}
+.paper-list{
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 36px;
+}
+.small-size{
+    color: #aaa;
+    font-size: 14px;
+}
+.status-line{
+    width: 150px;
+    flex-basis: 150px;
+
+}
+.paper-main{
+    
+}
+@media screen and (max-width: 720px){
+    .hide-small {
+        display: none;
+    }
+    .start-btn{
+        margin-right: 0;
+        margin-bottom: 4px;
+    }
+    .paper-main{
+        margin-bottom: 4px;
+    }
+    .op-btns{
+        flex-direction: column;
+        justify-content: space-between;
+    }
 }
