@@ -34,10 +34,12 @@ export class UserService {
     if(!token){
       return false;
     }
-    if(!this.jwtHelper.isTokenExpired()){
-      return true;
-    }else{
+    //console.log(this.jwtHelper.getTokenExpirationDate());
+    if(this.jwtHelper.isTokenExpired()){
+      this.logout();
       return false;
+    }else{
+      return true;
     }
   }
   public get nickname():string{
