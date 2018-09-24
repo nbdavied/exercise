@@ -19,6 +19,9 @@ import { PaperModule} from './module/paper/paper.module';
 import { QuestionModule } from './module/question/question.module';
 import { MatSnackBar } from '@angular/material';
 import { HandleErrorService } from './service/handle-error.service';
+import { environment } from '../environments/environment';
+
+const jwtDomain = environment.jwt_domain;
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -46,8 +49,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:4000'],
-        blacklistedRoutes: ['localhost:4000/api/auth']
+        whitelistedDomains: [jwtDomain],
+        blacklistedRoutes: [jwtDomain + '/api/auth/signin']
       }
     })
   ],
