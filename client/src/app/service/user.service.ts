@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable } from "rxjs"
@@ -29,6 +29,16 @@ export class UserService {
   signup(user: User): Observable<any>{
     return this.http.post<any>(apiHost + '/api/auth/signup', user);
   }
+  refresh():Observable<string>{
+    const body = new HttpParams().set('token', this.accessToken);
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    return this.http.post<{token:string}>(apiHost + '/api/auth/refresh', body.toString(), {headers}).pipe(
+      map(result =>{
+        localStorage.setItem('access_token', result.token);
+        return result.token;
+      })
+    )
+  }
   public get loggedIn():boolean{
     let token = localStorage.getItem('access_token');
     if(!token){
@@ -44,5 +54,8 @@ export class UserService {
   }
   public get nickname():string{
     return this.jwtHelper.decodeToken().nic;
+  }
+  get accessToken():string{
+    return localStorage.getItem('access_token');
   }
 }
