@@ -16,6 +16,14 @@
       </div>
       <!-- <div><a routerLink="/edit" *ngIf="answer.length > 0">修改答案</a></div> -->
       <div class="row">
+        <mat-radio-group [(ngModel)]="type">
+          <mat-radio-button value="s" color="primary">单选题</mat-radio-button>
+          <mat-radio-button value="m" color="primary">多选题</mat-radio-button>
+          <mat-radio-button value="t" color="primary">判断题</mat-radio-button>
+          <mat-radio-button value="" color="primary">全部</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="row">
         <div class="col-12 col-md-8">
           <mat-radio-group [(ngModel)]="nextType">
             <mat-radio-button value="random" color="primary">随机出题</mat-radio-button>

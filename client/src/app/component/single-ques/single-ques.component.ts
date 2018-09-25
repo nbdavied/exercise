@@ -19,6 +19,7 @@ export class SingleQuesComponent implements OnInit {
   answer: number[];
   currentId: number;
   onlyWrong: boolean;
+  type:string;
   @ViewChild(ShowQuesComponent)
   private showQuesComponent: ShowQuesComponent;
 
@@ -42,7 +43,7 @@ export class SingleQuesComponent implements OnInit {
   public getQuestion() {
     const bankid = +this.route.snapshot.paramMap.get('bankid');
     if (this.nextType == 'random') {
-      this.questionService.randomQuestion(bankid, this.onlyWrong)
+      this.questionService.randomQuestion(bankid, this.onlyWrong, this.type)
         .subscribe(question => {
           this.question = question;
           this.currentId = question.id;
@@ -50,7 +51,7 @@ export class SingleQuesComponent implements OnInit {
         );
     } else {
       var last = this.currentId;
-      this.questionService.nextQuestion(bankid, last, this.onlyWrong)
+      this.questionService.nextQuestion(bankid, last, this.onlyWrong, this.type)
         .subscribe(question => {
           this.question = question;
           this.currentId = question.id;

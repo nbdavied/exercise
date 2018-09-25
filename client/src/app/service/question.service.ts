@@ -15,21 +15,29 @@ export class QuestionService {
   
   constructor(private http: HttpClient, private errorHandler: HandleErrorService) { }
 
-  nextQuestion(bankid:number, last:number, onlyWrong:boolean):Observable<Question>{
+  nextQuestion(bankid:number, last:number, onlyWrong:boolean, type?:string|null):Observable<Question>{
     var wrong = '0';
     if(onlyWrong){
       wrong = '1';
     }
-    return this.http.get<Question>(apiHost + `/api/question/next?bankId=${bankid}&last=${last}&wrong=${wrong}`).pipe(
+    let url = `/api/question/next?bankId=${bankid}&last=${last}&wrong=${wrong}`;
+    if(type){
+      url = url + `&type=${type}`;
+    }
+    return this.http.get<Question>(apiHost + url).pipe(
       catchError(this.handleError<Question>())
     );
   }
-  randomQuestion(bankid:number, onlyWrong:boolean):Observable<Question>{
+  randomQuestion(bankid:number, onlyWrong:boolean, type?:string|null):Observable<Question>{
     var wrong = '0';
     if (onlyWrong) {
       wrong = '1';
     }
-    return this.http.get<Question>(apiHost + `/api/question/random?bankId=${bankid}&wrong=${wrong}`).pipe(
+    let url = `/api/question/random?bankId=${bankid}&wrong=${wrong}`;
+    if(type){
+      url = url + `&type=${type}`;
+    }
+    return this.http.get<Question>(apiHost + url).pipe(
       catchError(this.handleError<Question>())
     );
   }
