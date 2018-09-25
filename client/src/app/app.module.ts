@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtModule, JwtInterceptor, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,10 @@ import { PaperModule} from './module/paper/paper.module';
 import { QuestionModule } from './module/question/question.module';
 import { MatSnackBar } from '@angular/material';
 import { HandleErrorService } from './service/handle-error.service';
+import { environment } from '../environments/environment';
+import { RefreshTokenInterceptor } from './interceptor/refresh-token-interceptor';
+
+const jwtDomain = environment.jwt_domain;
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -46,15 +50,26 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:4000'],
-        blacklistedRoutes: ['localhost:4000/api/auth']
+        whitelistedDomains: [jwtDomain],
+        blacklistedRoutes: [jwtDomain + '/api/auth/signin']
       }
     })
   ],
   providers: [
     QuestionService,
     UserService,
-    HandleErrorService
+    HandleErrorService,
+    // JwtInterceptor,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useExisting: JwtInterceptor,
+    //   multi: true
+    // },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:RefreshTokenInterceptor,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })

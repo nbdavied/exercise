@@ -7,6 +7,9 @@ import { HandleErrorService } from '../../../service/handle-error.service';
 import { catchError } from 'rxjs/operators';
 import { TestResult } from '../entity/test-result';
 import { Question } from '../../../entity/question';
+import { environment } from '../../../../environments/environment';
+
+const apiHost = environment.api_host;
 @Injectable({
   providedIn: 'root'
 })
@@ -15,39 +18,39 @@ export class PaperService {
   constructor(private http:HttpClient, private errorHandler: HandleErrorService) { }
 
   createPaper(paper: TestPaper):Observable<any>{
-    return this.http.post<any>('/api/paper',paper).pipe(
+    return this.http.post<any>(apiHost + '/api/paper',paper).pipe(
       catchError(this.handleError<any>())
     );
   }
   getPapers():Observable<TestPaper[]>{
-    return this.http.get<TestPaper[]>('/api/paper').pipe(
+    return this.http.get<TestPaper[]>(apiHost + '/api/paper').pipe(
       catchError(this.handleError<TestPaper[]>([]))
     );
   }
   saveSelected(q: PaperQuestion):Observable<any>{
-    return this.http.post<any>('/api/paper/select', q).pipe(
+    return this.http.post<any>(apiHost + '/api/paper/select', q).pipe(
       catchError(this.handleError<any>())
     );
   }
   finishPaper(paperId: number):Observable<number>{
-    return this.http.post<number>('/api/paper/finish', {"id":paperId});
+    return this.http.post<number>(apiHost + '/api/paper/finish', {"id":paperId});
 
   }
   startPaper(paperId: number):Observable<TestPaper>{
-    return this.http.post<TestPaper>('/api/paper/start', {"id":paperId});
+    return this.http.post<TestPaper>(apiHost + '/api/paper/start', {"id":paperId});
   }
   updateRestTime(paperId: number, restTime:number):Observable<any>{
-    return this.http.post<any>('/api/paper/time', {"id":paperId, "restTime":restTime}).pipe(
+    return this.http.post<any>(apiHost + '/api/paper/time', {"id":paperId, "restTime":restTime}).pipe(
       catchError(this.handleError<any>())
     );
   }
   getResults(paperId:number):Observable<TestResult[]>{
-    return this.http.get<TestResult[]>(`/api/paper/result?paperId=${paperId}`).pipe(
+    return this.http.get<TestResult[]>(apiHost + `/api/paper/result?paperId=${paperId}`).pipe(
       catchError(this.handleError<TestResult[]>([]))
     );
   }
   getResultDetail(resultId:number,type:string, onlyWrong:boolean):Observable<Question[]>{
-    return this.http.get<Question[]>(`/api/paper/detail/${resultId}?type=${type}&onlywrong=${onlyWrong}`).pipe(
+    return this.http.get<Question[]>(apiHost + `/api/paper/detail/${resultId}?type=${type}&onlywrong=${onlyWrong}`).pipe(
       catchError(this.handleError<Question[]>([]))
     );
   }

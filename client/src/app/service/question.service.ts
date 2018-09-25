@@ -4,11 +4,15 @@ import { catchError } from 'rxjs/operators';
 import { Question } from '../entity/question';
 import { HttpClient } from '@angular/common/http';
 import { HandleErrorService } from './handle-error.service';
+import { environment } from '../../environments/environment';
+
+const apiHost = environment.api_host;
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
+  
   constructor(private http: HttpClient, private errorHandler: HandleErrorService) { }
 
   nextQuestion(bankid:number, last:number, onlyWrong:boolean):Observable<Question>{
@@ -16,7 +20,7 @@ export class QuestionService {
     if(onlyWrong){
       wrong = '1';
     }
-    return this.http.get<Question>(`/api/question/next?bankId=${bankid}&last=${last}&wrong=${wrong}`).pipe(
+    return this.http.get<Question>(apiHost + `/api/question/next?bankId=${bankid}&last=${last}&wrong=${wrong}`).pipe(
       catchError(this.handleError<Question>())
     );
   }
@@ -25,17 +29,17 @@ export class QuestionService {
     if (onlyWrong) {
       wrong = '1';
     }
-    return this.http.get<Question>(`/api/question/random?bankId=${bankid}&wrong=${wrong}`).pipe(
+    return this.http.get<Question>(apiHost + `/api/question/random?bankId=${bankid}&wrong=${wrong}`).pipe(
       catchError(this.handleError<Question>())
     );
   }
   getAnswer(questionId:number, answer:number[]):Observable<number[]>{
-    return this.http.post<number[]>(`/api/question/answer/${questionId}`, answer).pipe(
+    return this.http.post<number[]>(apiHost + `/api/question/answer/${questionId}`, answer).pipe(
       catchError(this.handleError<number[]>([]))
     );
   }
   getQuestionsInPaper(paperId: number, type:string):Observable<Question[]>{
-    return this.http.get<Question[]>(`/api/question?paperId=${paperId}&type=${type}`).pipe(
+    return this.http.get<Question[]>(apiHost + `/api/question?paperId=${paperId}&type=${type}`).pipe(
       catchError(this.handleError<Question[]>([]))
     );
   }
