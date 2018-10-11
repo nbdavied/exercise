@@ -77,6 +77,10 @@ export class SingleQuesComponent implements OnInit {
       this.selected = [choiceid];
     }
   }
+  public removeFromWrong(){
+    this.questionService.removeFromWrongCollection(this.question.id).subscribe();
+    this.getQuestion();
+  }
   onSelectChange(selected: number[]){
     this.selected = selected;
   }

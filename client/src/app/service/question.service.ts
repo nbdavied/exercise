@@ -51,6 +51,11 @@ export class QuestionService {
       catchError(this.handleError<Question[]>([]))
     );
   }
+  removeFromWrongCollection(questionId: number):Observable<any>{
+    return this.http.delete<any>(apiHost + `/api/question/wrong/${questionId}`).pipe(
+      catchError(this.handleError<any>())
+    );
+  }
   private handleError<T>(result?: T) {
     return (error: any): Observable<T> => {
       this.errorHandler.openSnackBar(error.statusText);
