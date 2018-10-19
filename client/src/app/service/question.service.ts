@@ -20,7 +20,7 @@ export class QuestionService {
     if(onlyWrong){
       wrong = '1';
     }
-    let url = `/api/question/next?bankId=${bankid}&last=${last}&wrong=${wrong}`;
+    let url = `/question/next?bankId=${bankid}&last=${last}&wrong=${wrong}`;
     if(type){
       url = url + `&type=${type}`;
     }
@@ -33,7 +33,7 @@ export class QuestionService {
     if (onlyWrong) {
       wrong = '1';
     }
-    let url = `/api/question/random?bankId=${bankid}&wrong=${wrong}`;
+    let url = `/question/random?bankId=${bankid}&wrong=${wrong}`;
     if(type){
       url = url + `&type=${type}`;
     }
@@ -42,17 +42,17 @@ export class QuestionService {
     );
   }
   getAnswer(questionId:number, answer:number[]):Observable<number[]>{
-    return this.http.post<number[]>(apiHost + `/api/question/answer/${questionId}`, answer).pipe(
+    return this.http.post<number[]>(apiHost + `/question/answer/${questionId}`, answer).pipe(
       catchError(this.handleError<number[]>([]))
     );
   }
   getQuestionsInPaper(paperId: number, type:string):Observable<Question[]>{
-    return this.http.get<Question[]>(apiHost + `/api/question?paperId=${paperId}&type=${type}`).pipe(
+    return this.http.get<Question[]>(apiHost + `/question?paperId=${paperId}&type=${type}`).pipe(
       catchError(this.handleError<Question[]>([]))
     );
   }
   removeFromWrongCollection(questionId: number):Observable<any>{
-    return this.http.delete<any>(apiHost + `/api/question/wrong/${questionId}`).pipe(
+    return this.http.delete<any>(apiHost + `/question/wrong/${questionId}`).pipe(
       catchError(this.handleError<any>())
     );
   }

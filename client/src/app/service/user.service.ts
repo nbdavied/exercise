@@ -16,7 +16,7 @@ export class UserService {
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
   login(username: string, password: string): Observable<boolean>{
-    return this.http.post<{ token: string }>(apiHost + '/api/auth/signin', {username: username, password: password}).pipe(
+    return this.http.post<{ token: string }>(apiHost + '/auth/signin', {username: username, password: password}).pipe(
       map(result => {
         localStorage.setItem('access_token', result.token);
         return true;
@@ -27,12 +27,12 @@ export class UserService {
     localStorage.removeItem('access_token');
   }
   signup(user: User): Observable<any>{
-    return this.http.post<any>(apiHost + '/api/auth/signup', user);
+    return this.http.post<any>(apiHost + '/auth/signup', user);
   }
   refresh():Observable<string>{
     const body = new HttpParams().set('token', this.accessToken);
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-    return this.http.post<{token:string}>(apiHost + '/api/auth/refresh', body.toString(), {headers}).pipe(
+    return this.http.post<{token:string}>(apiHost + '/auth/refresh', body.toString(), {headers}).pipe(
       map(result =>{
         localStorage.setItem('access_token', result.token);
         return result.token;

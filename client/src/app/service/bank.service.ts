@@ -15,12 +15,12 @@ export class BankService {
 
   constructor(private http: HttpClient, private errorHandler: HandleErrorService) { }
   getBanks():Observable<Bank[]>{
-    return this.http.get<Bank[]>(apiHost + '/api/banks').pipe(
+    return this.http.get<Bank[]>(apiHost + '/banks').pipe(
       catchError(this.handleError<Bank[]>([]))
     );
   }
   getQuesNum(bankId:number):Observable<QuesNum>{
-    return this.http.get<QuesNum>(apiHost + `/api/bank/count/${bankId}`).pipe(
+    return this.http.get<QuesNum>(apiHost + `/bank/count/${bankId}`).pipe(
       catchError(this.handleError<QuesNum>({"snum":0,"mnum":0,"tnum":0}))
     );
   }
