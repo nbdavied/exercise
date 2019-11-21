@@ -9,12 +9,20 @@ import { BankService } from '../../service/bank.service';
 })
 export class SelectBankComponent implements OnInit {
   banks:Bank[];
+  showlarge:boolean;
   constructor(private bankService : BankService) { }
 
   ngOnInit() {
     this.getBanks();
+    this.showlarge = false;
   }
   getBanks():void{
     this.bankService.getBanks().subscribe(banks => this.banks = banks);
+  }
+  closelarge():void{
+    this.showlarge = false;
+  }
+  showLarge():void{
+    this.showlarge = true;
   }
 }
