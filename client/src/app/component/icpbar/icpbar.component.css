@@ -8,7 +8,7 @@
     color: white;
     height: 32px;
     line-height: 32px;
-    
+    z-index: 999;
 }
 .icpbar a{
     color: white;
