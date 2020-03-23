@@ -21,6 +21,7 @@ import { MatSnackBar } from '@angular/material';
 import { HandleErrorService } from './service/handle-error.service';
 import { environment } from '../environments/environment';
 import { RefreshTokenInterceptor } from './interceptor/refresh-token-interceptor';
+import { IcpbarComponent } from './component/icpbar/icpbar.component';
 
 const jwtDomain = environment.jwt_domain;
 
@@ -36,7 +37,8 @@ export function tokenGetter() {
     LoginComponent,
     SignupComponent,
     NavbarComponent,
-    SingleQuesComponent
+    SingleQuesComponent,
+    IcpbarComponent
   ],
   imports: [
     BrowserModule,
